@@ -52,6 +52,13 @@
     <Compile Include="AlarmClockViewPresenter.cs" />
     <Compile Include="AlarmViewPresenter.cs" />
     <Compile Include="ClockViewPresenter.cs" />
+    <Compile Include="DefaultAlarmClockView.cs">
+      <ViewControl>true</ViewControl>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DefaultAlarmClockView.Designer.cs">
+      <DependentUpon>DefaultAlarmClockView.cs</DependentUpon>
+    </Compile>
     <Compile Include="IAlarmClock.cs" />
     <Compile Include="IAlarmClockView.cs" />
     <Compile Include="IAlarmView.cs" />
