@@ -15,7 +15,7 @@ namespace AlarmClock
         {
             set
             {
-                throw new NotImplementedException();
+                clockView.Time = value;
             }
         }
     }
