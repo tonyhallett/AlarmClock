@@ -52,13 +52,6 @@
     <Compile Include="AlarmClockViewPresenter.cs" />
     <Compile Include="AlarmViewPresenter.cs" />
     <Compile Include="ClockViewPresenter.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-      <ViewControl>True</ViewControl>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="IAlarmClock.cs" />
     <Compile Include="IAlarmClockView.cs" />
     <Compile Include="IAlarmView.cs" />
