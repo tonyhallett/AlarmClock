@@ -2,7 +2,7 @@
 
 namespace AlarmClock
 {
-    internal interface IClockPresenter
+    internal interface IClockViewPresenter
     {
           DateTime Time { set; }
     }

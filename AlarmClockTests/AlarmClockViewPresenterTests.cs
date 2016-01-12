@@ -16,30 +16,34 @@ namespace AlarmClockTests
         private AlarmClockViewPresenter alarmClockViewPresenter;
         private Mock<IAlarmClock> mockAlarmClock;
         private Mock<IAlarmClockView> mockAlarmClockView;
-        private Mock<IClockPresenter> mockClockPresenter;
+        private Mock<IClockViewPresenter> mockClockViewPresenter;
         private IAlarmClock mockedAlarmClock;
         private IAlarmClockView mockedAlarmClockView;
-        private IClockPresenter mockedClockPresenter;
+        private IClockViewPresenter mockedClockViewPresenter;
+        private Mock<IAlarmViewPresenter> mockAlarmViewPresenter;
+        private IAlarmViewPresenter mockedAlarmViewPresenter;
 
         [SetUp]
         public void SetUp()
         {
             mockAlarmClock = new Mock<IAlarmClock>();
             mockedAlarmClock = mockAlarmClock.Object;
-            mockClockPresenter = new Mock<IClockPresenter>();
-            mockedClockPresenter = mockClockPresenter.Object;
+            mockClockViewPresenter = new Mock<IClockViewPresenter>();
+            mockedClockViewPresenter = mockClockViewPresenter.Object;
             mockAlarmClockView = new Mock<IAlarmClockView>();
             mockedAlarmClockView = mockAlarmClockView.Object;
-            alarmClockViewPresenter = new AlarmClockViewPresenter(mockedAlarmClockView, mockedAlarmClock, mockedClockPresenter);
+            mockAlarmViewPresenter = new Mock<IAlarmViewPresenter>();
+            mockedAlarmViewPresenter = mockAlarmViewPresenter.Object;
+            alarmClockViewPresenter = new AlarmClockViewPresenter(mockedAlarmClockView, mockedAlarmClock, mockedClockViewPresenter,mockedAlarmViewPresenter);
         }
         [Test]
         public void Should_Set_The_ClockPresenter_Time_When_The_AlarmClock_Raises_The_Tick_Event()
         {
             var now = DateTime.Now;
-            mockClockPresenter.SetupSet(cp => cp.Time = now).Verifiable();
+            mockClockViewPresenter.SetupSet(cp => cp.Time = now).Verifiable();
             
             mockAlarmClock.Raise(ac => ac.Tick += null, mockAlarmClock.Object,now);
-            Expect(() => { mockClockPresenter.Verify(); }, Throws.Nothing);
+            Expect(() => { mockClockViewPresenter.Verify(); }, Throws.Nothing);
         }
         [Test]
         public void Should_StartAlarm_On_View_When_AlarmClock_Raises_Alarm_And_StopAlarm_When_Duration_Is_Over()
@@ -66,7 +70,7 @@ namespace AlarmClockTests
         [Test]
         public void Should_Set_AlarmClock_Alarm_When_AlarmViewPresenter_Sets_Alarm()
         {
-            var mockAlarmViewPresenter = new Mock<IAlarmViewPresenter>();
+            
             var newAlarm = new Alarm();
             mockAlarmViewPresenter.Raise(avp => avp.AlarmSet += null, mockAlarmViewPresenter.Object, newAlarm);
             Expect(() => { mockAlarmClock.Verify(ac => ac.SetAlarm(newAlarm)); }, Throws.Nothing);
