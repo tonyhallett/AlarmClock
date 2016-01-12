@@ -114,4 +114,32 @@ namespace AlarmClockTests
             Expect(() => { mockClockView.VerifySet(cv => cv.Time = time); }, Throws.Nothing);
         }
     }
+    [TestFixture]
+    public class ClockTests : AssertionHelper
+    {
+        [Test]
+        public void Should_Raise_Tick_At_Intervals_Of_One_Second_With_First_Tick_The_Initialized()
+        {
+            var initialTime = DateTime.Now;
+            var clock = new InitializedClock(initialTime);
+            var ticks = new List<DateTime>();
+            clock.Tick += (sender, dt) =>
+            {
+                ticks.Add(dt);
+            };
+            Thread.Sleep(5000);
+            var firstTick = ticks.First();
+            Expect(firstTick, Is.EqualTo(initialTime));
+            var lastTick = firstTick;
+            for(var i = 1; i < ticks.Count; i++)
+            {
+                var nextTick = ticks[i];
+                var duration = nextTick - lastTick;
+                Expect(duration.TotalMilliseconds, Is.EqualTo(1000));
+                lastTick = nextTick;
+            }
+        }
+        
+    }
+    
 }
