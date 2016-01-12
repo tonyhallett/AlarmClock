@@ -143,12 +143,18 @@ namespace AlarmClockTests
     }
     public class AlarmClockTests : AssertionHelper
     {
-        //then a should not raise alarm if no alarm set
+        private InitializedAlarmClock alarmClock;
+        private DateTime initialTime;
+
+        [SetUp]
+        public void SetUp()
+        {
+            initialTime = DateTime.Now;
+            alarmClock = new InitializedAlarmClock(initialTime);
+        }
         [Test]
         public void Should_Not_Raise_Alarm_If_No_Alarm_Set()
         {
-            var initialTime = DateTime.Now;
-            var alarmClock = new InitializedAlarmClock(initialTime);
             var alarmRaised = false;
             alarmClock.Alarm += (sender, duration) =>
             {
@@ -157,17 +163,27 @@ namespace AlarmClockTests
             Thread.Sleep(3000);
             Expect(alarmRaised, Is.False);
         }
-        
+        [Test]
+        public void Should_Not_Raise_Alarm_If_SetAlarm_Time_Is_Not_Passed()
+        {
+            var alarm = new Alarm { Time = initialTime.AddYears(1) };
+            alarmClock.SetAlarm(alarm);
+            var alarmRaised = false;
+            alarmClock.Alarm += (sender, duration) =>
+            {
+                alarmRaised = true;
+            };
+            Thread.Sleep(3000);
+            Expect(alarmRaised, Is.False);
+        }
 
-        //then a should not raise alarm if set and time is not reached
+        
         [Test]
         public void Should_Raise_Alarm_Only_Once_When_Alarm_Is_Set_And_Clock_Ticks_Pass()
         {
-            var initialTime = DateTime.Now;
             var alarmWait = 3;
             var alarmTime = initialTime.AddSeconds(alarmWait);
             var alarmDuration = 5;
-            var alarmClock = new InitializedAlarmClock(initialTime);
             var alarm = new Alarm { Time = alarmTime, Duration = alarmDuration };
             alarmClock.SetAlarm(alarm);
             var alarmsCount = 0;
