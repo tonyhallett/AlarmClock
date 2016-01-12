@@ -82,7 +82,7 @@ namespace AlarmClockTests
             Expect(() => { mockAlarmClockView.Verify(acv => acv.StopAlarm()); }, Throws.Nothing);
         }
     }
-
+    [TestFixture]
     public class AlarmViewPresenterTests : AssertionHelper
     {
         [Test]
@@ -98,6 +98,20 @@ namespace AlarmClockTests
             };
             mockAlarmView.Raise(v => v.AlarmSet += null, mockAlarmView.Object,viewAlarm);
             Expect(setAlarm, Is.SameAs(viewAlarm));
+        }
+    }
+    [TestFixture]
+    public class ClockViewPresenterTests : AssertionHelper
+    {
+        [Test]
+        public void Should_Pass_Time_Through_To_View()
+        {
+            var mockClockView = new Mock<IClockView>();
+            var clockView = mockClockView.Object;
+            var clockViewPresenter = new ClockViewPresenter(clockView);
+            var time = DateTime.Now;
+            clockViewPresenter.Time = time;
+            Expect(() => { mockClockView.VerifySet(cv => cv.Time = time); }, Throws.Nothing);
         }
     }
 }
