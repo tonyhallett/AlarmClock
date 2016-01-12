@@ -75,5 +75,11 @@ namespace AlarmClockTests
             mockAlarmViewPresenter.Raise(avp => avp.AlarmSet += null, mockAlarmViewPresenter.Object, newAlarm);
             Expect(() => { mockAlarmClock.Verify(ac => ac.SetAlarm(newAlarm)); }, Throws.Nothing);
         }
+        [Test]
+        public void Should_StopAlarm_If_AlarmClockView_TurnOffAlarm_Event_Is_Raised()
+        {
+            mockAlarmClockView.Raise(acv => acv.TurnOffAlarm += null, new EventArgs());
+            Expect(() => { mockAlarmClockView.Verify(acv => acv.StopAlarm()); }, Throws.Nothing);
+        }
     }
 }
