@@ -82,6 +82,9 @@
     <Compile Include="InitializedClock.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DefaultAlarmClockView.resx">
+      <DependentUpon>DefaultAlarmClockView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DefaultAlarmView.resx">
       <DependentUpon>DefaultAlarmView.cs</DependentUpon>
     </EmbeddedResource>

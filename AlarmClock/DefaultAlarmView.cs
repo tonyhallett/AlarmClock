@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace AlarmClock
 {
-    public partial class DefaultAlarmView : UserControl,IAlarmView
+    internal partial class DefaultAlarmView : UserControl,IAlarmView
     {
         public DefaultAlarmView()
         {
