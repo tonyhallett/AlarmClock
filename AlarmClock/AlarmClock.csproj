@@ -57,6 +57,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IAlarmClock.cs" />
+    <Compile Include="IAlarmClockView.cs" />
     <Compile Include="IClock.cs" />
     <Compile Include="IClockPresenter.cs" />
     <Compile Include="Program.cs" />

@@ -6,12 +6,14 @@ namespace AlarmClock
     {
         private IClockPresenter clockPresenter;
         private IAlarmClock alarmClock;
+        private IAlarmClockView alarmClockView;
         
+       
 
-        internal AlarmClockViewPresenter(IAlarmClock alarmClock, IClockPresenter clockPresenter)
+        public AlarmClockViewPresenter(IAlarmClockView alarmClockView, IAlarmClock alarmClock, IClockPresenter clockPresenter)
         {
+            this.alarmClockView = alarmClockView;
             this.alarmClock = alarmClock;
-            alarmClock.Tick += AlarmClock_Tick;
             this.clockPresenter = clockPresenter;
         }
 
