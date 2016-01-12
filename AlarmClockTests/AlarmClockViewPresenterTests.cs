@@ -144,6 +144,21 @@ namespace AlarmClockTests
     public class AlarmClockTests : AssertionHelper
     {
         //then a should not raise alarm if no alarm set
+        [Test]
+        public void Should_Not_Raise_Alarm_If_No_Alarm_Set()
+        {
+            var initialTime = DateTime.Now;
+            var alarmClock = new InitializedAlarmClock(initialTime);
+            var alarmRaised = false;
+            alarmClock.Alarm += (sender, duration) =>
+            {
+                alarmRaised = true;
+            };
+            Thread.Sleep(3000);
+            Expect(alarmRaised, Is.False);
+        }
+        
+
         //then a should not raise alarm if set and time is not reached
         [Test]
         public void Should_Raise_Alarm_Only_Once_When_Alarm_Is_Set_And_Clock_Ticks_Pass()
