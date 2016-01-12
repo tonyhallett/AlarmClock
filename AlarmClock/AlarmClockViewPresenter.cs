@@ -13,12 +13,18 @@ namespace AlarmClock
         public AlarmClockViewPresenter(IAlarmClockView alarmClockView, IAlarmClock alarmClock, IClockViewPresenter clockPresenter, IAlarmViewPresenter alarmViewPresenter)
         {
             this.alarmClockView = alarmClockView;
+            this.alarmClockView.TurnOffAlarm += AlarmClockView_TurnOffAlarm;
             this.alarmClock = alarmClock;
             this.alarmClock.Tick += AlarmClock_Tick;
             this.alarmClock.Alarm += AlarmClock_Alarm;
             this.clockPresenter = clockPresenter;
             this.alarmViewPresenter = alarmViewPresenter;
             this.alarmViewPresenter.AlarmSet += AlarmViewPresenter_AlarmSet;
+        }
+
+        private void AlarmClockView_TurnOffAlarm(object sender, System.EventArgs e)
+        {
+            alarmClockView.StopAlarm();
         }
 
         private void AlarmViewPresenter_AlarmSet(object sender, Alarm e)
