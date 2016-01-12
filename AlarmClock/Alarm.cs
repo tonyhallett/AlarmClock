@@ -2,9 +2,11 @@
 
 namespace AlarmClock
 {
-    public class Alarm
+    internal class Alarm
     {
-        public int Duration { get; internal set; }
-        public DateTime Time { get; internal set; }
+        internal int Duration { get; set; }
+        internal DateTime Time { get; set; }
+        internal bool Called { get; set; }
+
     }
 }

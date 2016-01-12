@@ -4,7 +4,7 @@ namespace AlarmClock
 {
     internal class InitializedAlarmClock:InitializedClock,IAlarmClock
     {
-        private Alarm alarm;
+        private Alarm setAlarm;
         internal InitializedAlarmClock(DateTime initialTime):base(initialTime)
         {
             this.Tick += InitializedAlarmClock_Tick;       
@@ -12,14 +12,22 @@ namespace AlarmClock
 
         private void InitializedAlarmClock_Tick(object sender, DateTime e)
         {
-            
+            if (setAlarm != null&&!setAlarm.Called&&setAlarm.Time<e)
+            {
+                setAlarm.Called = true;
+                var handler = Alarm;
+                if (handler != null)
+                {
+                    handler(this, setAlarm.Duration);
+                }
+            }
         }
 
         public event EventHandler<int> Alarm;
         
         public void SetAlarm(Alarm newAlarm)
         {
-            alarm = newAlarm;
+            setAlarm = newAlarm;
         }
     }
 }

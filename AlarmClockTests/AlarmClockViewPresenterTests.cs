@@ -143,6 +143,8 @@ namespace AlarmClockTests
     }
     public class AlarmClockTests : AssertionHelper
     {
+        //then a should not raise alarm if no alarm set
+        //then a should not raise alarm if set and time is not reached
         [Test]
         public void Should_Raise_Alarm_Only_Once_When_Alarm_Is_Set_And_Clock_Ticks_Pass()
         {
@@ -160,7 +162,7 @@ namespace AlarmClockTests
                 alarmsCount++;
                 eventAlarmDuration = duration;
             };
-            Thread.Sleep(alarmWait+5);
+            Thread.Sleep((alarmWait+5)*1000);
             Expect(alarmsCount, Is.EqualTo(1));
             Expect(eventAlarmDuration, Is.EqualTo(alarmDuration));
         }
