@@ -176,7 +176,6 @@ namespace AlarmClockTests
             Thread.Sleep(3000);
             Expect(alarmRaised, Is.False);
         }
-
         
         [Test]
         public void Should_Raise_Alarm_Only_Once_When_Alarm_Is_Set_And_Clock_Ticks_Pass()
