@@ -141,5 +141,31 @@ namespace AlarmClockTests
         }
         
     }
-    
+    public class AlarmClockTests : AssertionHelper
+    {
+        [Test]
+        public void Should_Raise_Alarm_Only_Once_When_Alarm_Is_Set_And_Clock_Ticks_Pass()
+        {
+            var initialTime = DateTime.Now;
+            var alarmWait = 3;
+            var alarmTime = initialTime.AddSeconds(alarmWait);
+            var alarmDuration = 5;
+            var alarmClock = new InitializedAlarmClock(initialTime);
+            var alarm = new Alarm { Time = alarmTime, Duration = alarmDuration };
+            alarmClock.SetAlarm(alarm);
+            var alarmsCount = 0;
+            var eventAlarmDuration = 0;
+            alarmClock.Alarm += (sender, duration) =>
+            {
+                alarmsCount++;
+                eventAlarmDuration = duration;
+            };
+            Thread.Sleep(alarmWait+5);
+            Expect(alarmsCount, Is.EqualTo(1));
+            Expect(eventAlarmDuration, Is.EqualTo(alarmDuration));
+        }
+
+        
+    }
+
 }

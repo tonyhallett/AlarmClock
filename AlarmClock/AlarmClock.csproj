@@ -66,6 +66,7 @@
     <Compile Include="IClock.cs" />
     <Compile Include="IClockPresenter.cs" />
     <Compile Include="IClockView.cs" />
+    <Compile Include="InitializedAlarmClock.cs" />
     <Compile Include="InitializedClock.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
