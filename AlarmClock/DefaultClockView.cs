@@ -10,8 +10,9 @@ using System.Windows.Forms;
 
 namespace AlarmClock
 {
-    public partial class DefaultClockView : UserControl,IClockView
+    internal partial class DefaultClockView : UserControl,IClockView
     {
+        
         public DefaultClockView()
         {
             InitializeComponent();
@@ -21,8 +22,12 @@ namespace AlarmClock
         {
             set
             {
-                labelTime.Text = value.ToShortDateString();
+                labelTime.Invoke(new Action<DateTime>((val)=>SafeTimeSet(val.ToString())), value);
             }
+        }
+        private void SafeTimeSet(string time)
+        {
+            labelTime.Text = time;
         }
     }
 }

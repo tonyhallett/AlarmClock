@@ -6,7 +6,7 @@ namespace AlarmClock
     {
         private IAlarmView alarmView;
 
-        internal AlarmViewPresenter(IAlarmView alarmView)
+        public AlarmViewPresenter(IAlarmView alarmView)
         {
             this.alarmView = alarmView;
             this.alarmView.AlarmSet += AlarmView_AlarmSet;

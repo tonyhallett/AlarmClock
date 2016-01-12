@@ -12,12 +12,13 @@ namespace AlarmClock
 {
 internal partial class DefaultAlarmClockView : Form, IAlarmClockView
 {
-    internal DefaultAlarmClockView(AlarmClock.IAlarmView alarmView, AlarmClock.IClockView clockView)
+    public DefaultAlarmClockView(AlarmClock.IAlarmView alarmView, AlarmClock.IClockView clockView)
     {
         this.__alarmView = alarmView;
         this.__clockView = clockView;
         var l_alarmView = (System.Windows.Forms.Control)alarmView;
         var l_clockView = (System.Windows.Forms.Control)clockView;
+        this.btnTurnMeOff = new System.Windows.Forms.Button();
         this.SuspendLayout();
         l_alarmView.Location = new System.Drawing.Point(40, 67);
         l_alarmView.Name = "defaultAlarmView1";
@@ -28,11 +29,22 @@ internal partial class DefaultAlarmClockView : Form, IAlarmClockView
         l_clockView.Size = new System.Drawing.Size(150, 49);
         l_clockView.TabIndex = 1;
         // 
+        // btnTurnMeOff
+        // 
+        this.btnTurnMeOff.Location = new System.Drawing.Point(65, 187);
+        this.btnTurnMeOff.Name = "btnTurnMeOff";
+        this.btnTurnMeOff.Size = new System.Drawing.Size(75, 23);
+        this.btnTurnMeOff.TabIndex = 2;
+        this.btnTurnMeOff.Text = "Turn Me Off !";
+        this.btnTurnMeOff.UseVisualStyleBackColor = true;
+        this.btnTurnMeOff.Click += new System.EventHandler(this.btnTurnMeOff_Click);
+        // 
         // DefaultAlarmClockView
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.ClientSize = new System.Drawing.Size(335, 222);
+        this.Controls.Add(this.btnTurnMeOff);
         this.Controls.Add(l_clockView);
         this.Controls.Add(l_alarmView);
         this.Name = "DefaultAlarmClockView";
@@ -60,6 +72,15 @@ internal partial class DefaultAlarmClockView : Form, IAlarmClockView
     public void StopAlarm()
     {
         this.BackColor = originalAlarmColor;
+    }
+
+    private void btnTurnMeOff_Click(object sender, EventArgs e)
+    {
+        var handler = TurnOffAlarm;
+        if (handler != null)
+        {
+            handler(this, new EventArgs());
+        }
     }
 }
 }

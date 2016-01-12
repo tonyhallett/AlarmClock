@@ -5,7 +5,7 @@ namespace AlarmClock
     internal class InitializedAlarmClock:InitializedClock,IAlarmClock
     {
         private Alarm setAlarm;
-        internal InitializedAlarmClock(DateTime initialTime):base(initialTime)
+        public InitializedAlarmClock(DateTime initialTime):base(initialTime)
         {
             this.Tick += InitializedAlarmClock_Tick;       
         }

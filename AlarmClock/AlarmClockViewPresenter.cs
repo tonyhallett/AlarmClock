@@ -9,7 +9,12 @@ namespace AlarmClock
         private IAlarmClockView alarmClockView;
         private System.Timers.Timer timer;
         private IAlarmViewPresenter alarmViewPresenter;
-
+        public IAlarmClockView View { get
+            {
+                return alarmClockView;
+            }
+        }
+            
         public AlarmClockViewPresenter(IAlarmClockView alarmClockView, IAlarmClock alarmClock, IClockViewPresenter clockPresenter, IAlarmViewPresenter alarmViewPresenter)
         {
             this.alarmClockView = alarmClockView;

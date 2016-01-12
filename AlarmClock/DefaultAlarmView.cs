@@ -21,6 +21,15 @@ namespace AlarmClock
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+            SetAlarm();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            SetAlarm();
+        }
+        private void SetAlarm()
+        {
             var handler = AlarmSet;
             if (handler != null)
             {

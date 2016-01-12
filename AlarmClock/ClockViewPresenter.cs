@@ -6,7 +6,7 @@ namespace AlarmClock
     {
         private IClockView clockView;
 
-        internal ClockViewPresenter(IClockView clockView)
+        public ClockViewPresenter(IClockView clockView)
         {
             this.clockView = clockView;
         }
