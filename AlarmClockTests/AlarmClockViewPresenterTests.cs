@@ -69,7 +69,7 @@ namespace AlarmClockTests
             var mockAlarmViewPresenter = new Mock<IAlarmViewPresenter>();
             var newAlarm = new Alarm();
             mockAlarmViewPresenter.Raise(avp => avp.AlarmSet += null, mockAlarmViewPresenter.Object, newAlarm);
-            Expect(() => { mockAlarmClock.VerifySet(ac => ac.SetAlarm(newAlarm)); }, Throws.Nothing);
+            Expect(() => { mockAlarmClock.Verify(ac => ac.SetAlarm(newAlarm)); }, Throws.Nothing);
         }
     }
 }
