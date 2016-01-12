@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AlarmClockTests
@@ -56,8 +57,10 @@ namespace AlarmClockTests
             }).Verifiable();
             
             mockAlarmClock.Raise(ac => ac.Alarm += null, mockedAlarmClock, duration);
+            Thread.Sleep((duration+5)*1000);
             Expect(() => { mockAlarmClockView.Verify(); }, Throws.Nothing);
-            Expect((stopAlarmTime - startAlarmTime).Seconds, Is.GreaterThan(duration));
+            
+            Expect((stopAlarmTime - startAlarmTime).Seconds, Is.GreaterThanOrEqualTo(duration));
             
         }
     }
