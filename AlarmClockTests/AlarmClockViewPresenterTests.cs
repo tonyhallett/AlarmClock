@@ -82,4 +82,22 @@ namespace AlarmClockTests
             Expect(() => { mockAlarmClockView.Verify(acv => acv.StopAlarm()); }, Throws.Nothing);
         }
     }
+
+    public class AlarmViewPresenterTests : AssertionHelper
+    {
+        [Test]
+        public void Should_Raise_AlarmSet_When_View_Raise_Does_With_Same_Alarm()
+        {
+            var mockAlarmView = new Mock<IAlarmView>();
+            var alarmView = mockAlarmView.Object;
+            var alarmViewPresenter = new AlarmViewPresenter(alarmView);
+            Alarm viewAlarm = new Alarm();
+            Alarm setAlarm = null;
+            alarmViewPresenter.AlarmSet +=(sender, args)=>{
+                setAlarm = args;
+            };
+            mockAlarmView.Raise(v => v.AlarmSet += null, mockAlarmView.Object,viewAlarm);
+            Expect(setAlarm, Is.SameAs(viewAlarm));
+        }
+    }
 }
