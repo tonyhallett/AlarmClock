@@ -63,5 +63,13 @@ namespace AlarmClockTests
             Expect((stopAlarmTime - startAlarmTime).Seconds, Is.GreaterThanOrEqualTo(duration));
             
         }
+        [Test]
+        public void Should_Set_AlarmClock_Alarm_When_AlarmViewPresenter_Sets_Alarm()
+        {
+            var mockAlarmViewPresenter = new Mock<IAlarmViewPresenter>();
+            var newAlarm = new Alarm();
+            mockAlarmViewPresenter.Raise(avp => avp.AlarmSet += null, mockAlarmViewPresenter.Object, newAlarm);
+            Expect(() => { mockAlarmClock.VerifySet(ac => ac.SetAlarm(newAlarm)); }, Throws.Nothing);
+        }
     }
 }
