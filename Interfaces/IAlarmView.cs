@@ -1,9 +1,10 @@
 ﻿using System;
 
-namespace AlarmClock
+namespace Interfaces
 {
-    internal interface IAlarmView
+    public interface IAlarmView
     {
         event EventHandler<Alarm> AlarmSet;
+        
     }
 }

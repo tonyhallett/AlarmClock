@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Interfaces;
 
 namespace AlarmClock
 {
-    internal partial class DefaultAlarmView : UserControl,IAlarmView
+    //[Designer(typeof(SizeBlockerDesigner))]
+    public partial class DefaultAlarmView : UserControl,IAlarmView
     {
         public DefaultAlarmView()
         {
@@ -35,6 +37,15 @@ namespace AlarmClock
             {
                 handler(this, new Alarm { Time = dateTimePicker1.Value, Duration = (int)numericUpDown1.Value });
             }
+        }
+        public bool ShouldSerializeSize()
+        {
+            return false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = !panel1.Visible;
         }
     }
 }

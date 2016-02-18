@@ -1,11 +1,12 @@
 ﻿using System;
 
-namespace AlarmClock
+namespace Interfaces
 {
-    internal interface IAlarmClockView
+    public interface IAlarmClockView
     {
         event EventHandler TurnOffAlarm;
         void StartAlarm();
         void StopAlarm();
+        
     }
 }

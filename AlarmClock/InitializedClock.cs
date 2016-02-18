@@ -3,7 +3,7 @@ using System.Timers;
 
 namespace AlarmClock
 {
-    internal  class InitializedClock:IClock
+    public  class InitializedClock:IClock
     {
         private DateTime now;
         private Timer timer;

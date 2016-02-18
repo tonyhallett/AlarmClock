@@ -1,4 +1,4 @@
-﻿namespace AlarmClock
+﻿namespace DefaultViews
 {
     partial class DefaultClockView
     {

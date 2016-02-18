@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Interfaces;
 
-namespace AlarmClock
+namespace DefaultViews
 {
-    internal partial class DefaultClockView : UserControl,IClockView
+    public partial class DefaultClockView : UserControl,IClockView
     {
         
         public DefaultClockView()
@@ -18,11 +19,19 @@ namespace AlarmClock
             InitializeComponent();
         }
 
+        public int DoNotSetInTheDesigner
+        {
+            get; set;
+        }
+
         public DateTime Time
         {
             set
             {
-                labelTime.Invoke(new Action<DateTime>((val)=>SafeTimeSet(val.ToString())), value);
+                if (!this.Disposing)
+                {
+                    labelTime.Invoke(new Action<DateTime>((val) => SafeTimeSet(val.ToString())), value);
+                }
             }
         }
         private void SafeTimeSet(string time)

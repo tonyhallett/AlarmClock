@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Interfaces;
+using System;
 
 namespace AlarmClock
 {
-    internal class InitializedAlarmClock:InitializedClock,IAlarmClock
+    public class InitializedAlarmClock:InitializedClock,IAlarmClock
     {
         private Alarm setAlarm;
         public InitializedAlarmClock(DateTime initialTime):base(initialTime)

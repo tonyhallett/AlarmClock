@@ -4,19 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7C4A7A2F-B636-4B2B-B312-8AC8437EFE46}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{A39D55A0-D240-425B-8656-0BB5301522D8}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AlarmClock</RootNamespace>
-    <AssemblyName>AlarmClock</AssemblyName>
+    <RootNamespace>DefaultViews</RootNamespace>
+    <AssemblyName>DefaultViews</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <ViewControlProject />
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -26,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -36,76 +32,37 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.ComponentModel.Composition.Registration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Reflection.Context" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlarmClockViewPresenter.cs" />
-    <Compile Include="AlarmViewPresenter.cs" />
-    <Compile Include="ClockViewPresenter.cs" />
-    <Compile Include="DefaultAlarmView.cs">
+    <Compile Include="DefaultClockView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DefaultAlarmView.Designer.cs">
-      <DependentUpon>DefaultAlarmView.cs</DependentUpon>
+    <Compile Include="DefaultClockView.Designer.cs">
+      <DependentUpon>DefaultClockView.cs</DependentUpon>
     </Compile>
-    <Compile Include="IAlarmClock.cs" />
-    <Compile Include="IAlarmViewPresenter.cs" />
-    <Compile Include="IClock.cs" />
-    <Compile Include="IClockPresenter.cs" />
-    <Compile Include="InitializedAlarmClock.cs" />
-    <Compile Include="InitializedClock.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DefaultAlarmView.resx">
-      <DependentUpon>DefaultAlarmView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
+    <Compile Include="SizeBlockerDesigner.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <EmbeddedResource Include="DefaultClockView.resx">
+      <DependentUpon>DefaultClockView.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DefaultViews\DefaultViews.csproj">
-      <Project>{a39d55a0-d240-425b-8656-0bb5301522d8}</Project>
-      <Name>DefaultViews</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{55f4d8e6-03a9-4ac9-818b-aedddb87d25d}</Project>
       <Name>Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ReplacementParts\ReplacementParts.csproj">
-      <Project>{14f0207c-4d2f-4ed9-bc18-94cf2ba61cc3}</Project>
-      <Name>ReplacementParts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
